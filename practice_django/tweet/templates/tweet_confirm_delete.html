@@ -6,8 +6,202 @@
     
 
 {% block content %}
-    <h1 class="text-center mt-4">Welcome to Ruhi Practice Hub</h1>
-    <p class="text-center">This is a simple tweet application.</p>
+
+<style>
+  :root {
+    --paper: #f6f1e4;
+    --paper-raised: #fbf8ef;
+    --ink: #26241d;
+    --ink-soft: #6b6555;
+    --rule: #d8cdb2;
+    --accent: #bf3d1c;
+    --accent-ink: #fdf6ea;
+    --safe: #2f6b3a;
+    --safe-ink: #fdf6ea;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #242019;
+      --paper-raised: #2d2820;
+      --ink: #f1ead9;
+      --ink-soft: #b9ae95;
+      --rule: #4a4331;
+      --accent: #e3703c;
+      --accent-ink: #241a12;
+      --safe: #5b9c68;
+      --safe-ink: #14210f;
+    }
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: ui-monospace, "SFMono-Regular", "Space Mono", Menlo, Consolas, monospace;
+  }
+
+
+  
+  /* Navbar */
+  .navbar {
+    background: var(--ink) !important;
+    border-bottom: 2px solid var(--accent);
+    padding: 14px 24px;
+  }
+
+  .navbar-brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--paper) !important;
+    font-size: 1.3rem;
+  }
+
+  .navbar .nav-link {
+    color: var(--paper) !important;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+
+  .navbar .nav-link:hover {
+    color: var(--accent) !important;
+  }
+
+  .navbar .nav-link.disabled {
+    color: var(--ink-soft) !important;
+  }
+
+  .navbar .dropdown-menu {
+    background: var(--paper-raised);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+  }
+
+  .navbar .dropdown-item {
+    color: var(--ink);
+    font-size: 0.85rem;
+  }
+
+  .navbar .dropdown-item:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .navbar .form-control {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    color: var(--ink);
+    font-family: inherit;
+  }
+
+  .navbar .form-control::placeholder {
+    color: var(--ink-soft);
+  }
+
+  .navbar .btn-outline-success {
+    border: 1px solid var(--accent);
+    border-radius: 0;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 0.8rem;
+  }
+
+  .navbar .btn-outline-success:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+
+
+
+
+
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 4.5vw, 2.1rem);
+    letter-spacing: -0.01em;
+    max-width: 560px;
+    margin: 0 auto 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  form {
+    max-width: 560px;
+    margin: 0 auto;
+    background: var(--paper-raised);
+    border: 1px solid var(--ink);
+    box-shadow: 7px 7px 0 var(--accent);
+    padding: 30px 28px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-danger {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    padding: 12px 26px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .btn-danger:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+    color: var(--accent-ink);
+  }
+
+  .btn-danger:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+
+  .btn-success {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    padding: 12px 26px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .btn-success:hover {
+    background: var(--safe);
+    border-color: var(--safe);
+    color: var(--safe-ink);
+  }
+</style>
+
+
+
+
+    <h1 class="text-center mt-4">Are you sure you want to delete this tweet?</h1>
+    
+
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Yes, Delete</button>
+        <a href="{% url 'tweet_list' %}" class="btn btn-success">Cancel</a>
+    </form>
+
+
+
 {% endblock %}
 
 

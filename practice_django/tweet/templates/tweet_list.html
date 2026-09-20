@@ -6,10 +6,224 @@
     
 
 {% block content %}
+
+
+<style>
+  :root {
+    --paper: #f6f1e4;
+    --paper-raised: #fbf8ef;
+    --ink: #26241d;
+    --ink-soft: #6b6555;
+    --rule: #d8cdb2;
+    --accent: #bf3d1c;
+    --accent-ink: #fdf6ea;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #242019;
+      --paper-raised: #2d2820;
+      --ink: #f1ead9;
+      --ink-soft: #b9ae95;
+      --rule: #4a4331;
+      --accent: #e3703c;
+      --accent-ink: #241a12;
+    }
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: ui-monospace, "SFMono-Regular", "Space Mono", Menlo, Consolas, monospace;
+  }
+
+  /* Navbar */
+  .navbar {
+    background: var(--ink) !important;
+    border-bottom: 2px solid var(--accent);
+    padding: 14px 24px;
+  }
+
+  .navbar-brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--paper) !important;
+    font-size: 1.3rem;
+  }
+
+  .navbar .nav-link {
+    color: var(--paper) !important;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+
+  .navbar .nav-link:hover {
+    color: var(--accent) !important;
+  }
+
+  .navbar .nav-link.disabled {
+    color: var(--ink-soft) !important;
+  }
+
+  .navbar .dropdown-menu {
+    background: var(--paper-raised);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+  }
+
+  .navbar .dropdown-item {
+    color: var(--ink);
+    font-size: 0.85rem;
+  }
+
+  .navbar .dropdown-item:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .navbar .form-control {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    color: var(--ink);
+    font-family: inherit;
+  }
+
+  .navbar .form-control::placeholder {
+    color: var(--ink-soft);
+  }
+
+  .navbar .btn-outline-success {
+    border: 1px solid var(--accent);
+    border-radius: 0;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 0.8rem;
+  }
+
+  .navbar .btn-outline-success:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  /* Page heading */
+  h1 {
+    font-family: Georgia, serif;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  h1 + p,
+  .lead {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-bottom: 36px;
+  }
+
+  /* Create Tweet button */
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper-raised);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    padding: 10px 22px;
+    box-shadow: 4px 4px 0 var(--accent);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--ink);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--accent);
+    color: var(--paper-raised);
+  }
+
+  .btn-primary:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--accent);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--paper-raised);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    box-shadow: 7px 7px 0 var(--rule);
+  }
+
+  .card-img-top {
+    border-bottom: 1px solid var(--ink);
+    filter: sepia(0.12) contrast(1.03);
+  }
+
+  .card-body {
+    padding: 18px 20px 20px;
+  }
+
+  .card-title {
+    font-family: Georgia, serif;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .card-text {
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .card .btn-primary {
+    padding: 7px 16px;
+    font-size: 0.78rem;
+    box-shadow: 3px 3px 0 var(--accent);
+  }
+
+  .card .btn-primary:hover {
+    box-shadow: 4px 4px 0 var(--accent);
+  }
+
+  .card .btn-danger {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    padding: 7px 16px;
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .card .btn-danger:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--ink);
+    color: var(--accent-ink);
+  }
+
+  .card .btn-danger:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+</style>
+
+
+
+
+
+
     <h1 class="text-center mt-4">Welcome to Ruhi Practice Hub</h1>
     <p class="text-center">This is a simple tweet application.</p>
 
-<a class="btn btn-primary" href="{% url 'tweet_create' %}">Create Tweet</a>
+<a class="btn btn-primary mb-4" href="{% url 'tweet_create' %}">Create Tweet</a>
 <div class="container row gap-3">
     {% for tweet in tweets %}
         <div class="card" style="width: 18rem;">
