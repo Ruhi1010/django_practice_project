@@ -1,0 +1,213 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ruhi Practice Hub | Register
+{% endblock title %}
+
+{% block content %}
+
+<style>
+  :root {
+    --paper: #f6f1e4;
+    --paper-raised: #fbf8ef;
+    --ink: #26241d;
+    --ink-soft: #6b6555;
+    --rule: #d8cdb2;
+    --accent: #bf3d1c;
+    --accent-ink: #fdf6ea;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #242019;
+      --paper-raised: #2d2820;
+      --ink: #f1ead9;
+      --ink-soft: #b9ae95;
+      --rule: #4a4331;
+      --accent: #e3703c;
+      --accent-ink: #241a12;
+    }
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: ui-monospace, "SFMono-Regular", "Space Mono", Menlo, Consolas, monospace;
+  }
+
+  /* Navbar */
+  .navbar {
+    background: var(--ink) !important;
+    border-bottom: 2px solid var(--accent);
+    padding: 14px 24px;
+  }
+
+  .navbar-brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--paper) !important;
+    font-size: 1.3rem;
+  }
+
+  .navbar .nav-link {
+    color: var(--paper) !important;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+
+  .navbar .nav-link:hover {
+    color: var(--accent) !important;
+  }
+
+  .navbar .nav-link.disabled {
+    color: var(--ink-soft) !important;
+  }
+
+  .navbar .dropdown-menu {
+    background: var(--paper-raised);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+  }
+
+  .navbar .dropdown-item {
+    color: var(--ink);
+    font-size: 0.85rem;
+  }
+
+  .navbar .dropdown-item:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .navbar .form-control {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    color: var(--ink);
+    font-family: inherit;
+  }
+
+  .navbar .form-control::placeholder {
+    color: var(--ink-soft);
+  }
+
+  .navbar .btn-outline-success {
+    border: 1px solid var(--accent);
+    border-radius: 0;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 0.8rem;
+  }
+
+  .navbar .btn-outline-success:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  /* Register card */
+  .register-wrap {
+    max-width: 440px;
+    margin: 50px auto;
+    background: var(--paper-raised);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    padding: 32px 36px;
+    box-shadow: 7px 7px 0 var(--rule);
+  }
+
+  .register-wrap h2 {
+    font-family: Georgia, serif;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+
+  .register-wrap form p {
+    margin-bottom: 18px;
+  }
+
+  .register-wrap label {
+    display: block;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .register-wrap input {
+    width: 100%;
+    padding: 8px 12px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+  }
+
+  .register-wrap input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(191, 61, 28, 0.15);
+  }
+
+  .register-wrap .helptext {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .register-wrap ul.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0;
+    color: var(--accent);
+    font-size: 0.78rem;
+  }
+
+  .register-wrap button {
+    width: 100%;
+    background: var(--ink);
+    color: var(--paper-raised);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    padding: 10px;
+    margin-top: 8px;
+    box-shadow: 4px 4px 0 var(--accent);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .register-wrap button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--accent);
+    color: var(--paper-raised);
+  }
+
+  .register-wrap button:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--accent);
+  }
+</style>
+
+<div class="register-wrap">
+  <h2>Register</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn" type="submit">Register</button>
+  </form>
+</div>
+
+
+
+{% endblock %}

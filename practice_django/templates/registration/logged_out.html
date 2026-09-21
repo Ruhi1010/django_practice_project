@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ruhi Practice Hub | Logged Out
+{% endblock title %}
+
+{% block content %}
+
+<meta http-equiv="refresh" content="5;url={% url 'tweet_list' %}">
+
+<style>
+  :root {
+    --paper: #f6f1e4;
+    --paper-raised: #fbf8ef;
+    --ink: #26241d;
+    --ink-soft: #6b6555;
+    --rule: #d8cdb2;
+    --accent: #bf3d1c;
+    --accent-ink: #fdf6ea;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #242019;
+      --paper-raised: #2d2820;
+      --ink: #f1ead9;
+      --ink-soft: #b9ae95;
+      --rule: #4a4331;
+      --accent: #e3703c;
+      --accent-ink: #241a12;
+    }
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: ui-monospace, "SFMono-Regular", "Space Mono", Menlo, Consolas, monospace;
+  }
+
+  /* Navbar */
+  .navbar {
+    background: var(--ink) !important;
+    border-bottom: 2px solid var(--accent);
+    padding: 14px 24px;
+  }
+
+  .navbar-brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--paper) !important;
+    font-size: 1.3rem;
+  }
+
+  .navbar .nav-link {
+    color: var(--paper) !important;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+
+  .navbar .nav-link:hover {
+    color: var(--accent) !important;
+  }
+
+  .navbar .nav-link.disabled {
+    color: var(--ink-soft) !important;
+  }
+
+  .navbar .dropdown-menu {
+    background: var(--paper-raised);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+  }
+
+  .navbar .dropdown-item {
+    color: var(--ink);
+    font-size: 0.85rem;
+  }
+
+  .navbar .dropdown-item:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .navbar .form-control {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    color: var(--ink);
+    font-family: inherit;
+  }
+
+  .navbar .form-control::placeholder {
+    color: var(--ink-soft);
+  }
+
+  .navbar .btn-outline-success {
+    border: 1px solid var(--accent);
+    border-radius: 0;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 0.8rem;
+  }
+
+  .navbar .btn-outline-success:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  /* Logged out card */
+  .loggedout-wrap {
+    max-width: 440px;
+    margin: 80px auto;
+    background: var(--paper-raised);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    padding: 36px 36px;
+    text-align: center;
+    box-shadow: 7px 7px 0 var(--rule);
+  }
+
+  .loggedout-wrap h2 {
+    font-family: Georgia, serif;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .loggedout-wrap p {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  .loggedout-wrap a {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .loggedout-wrap a:hover {
+    text-decoration: underline;
+  }
+
+  .countdown {
+    margin-top: 14px;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+
+  .countdown span {
+    color: var(--accent);
+    font-weight: 700;
+  }
+</style>
+
+<div class="loggedout-wrap">
+  <h2>Logged Out</h2>
+  <p>You have been logged out. <a href="{% url 'login' %}">Login here</a>.</p>
+  <p class="countdown">Redirecting in <span id="counter">5</span> seconds...</p>
+</div>
+
+<script>
+  let seconds = 5;
+  const counter = document.getElementById('counter');
+  const interval = setInterval(function() {
+    seconds--;
+    counter.textContent = seconds;
+    if (seconds <= 0) {
+      clearInterval(interval);
+    }
+  }, 1000);
+</script>
+
+{% endblock %}

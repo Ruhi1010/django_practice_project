@@ -150,6 +150,67 @@
     box-shadow: 2px 2px 0 var(--accent);
   }
 
+  /* Search bar */
+  .search-form {
+    display: flex;
+    gap: 8px;
+    max-width: 400px;
+    margin-bottom: 28px;
+  }
+
+  .search-form input[type="text"] {
+    flex: 1;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    box-sizing: border-box;
+  }
+
+  .search-form input[type="text"]:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(191, 61, 28, 0.15);
+  }
+
+  .search-form input[type="text"]::placeholder {
+    color: var(--ink-soft);
+  }
+
+  .search-form button {
+    background: var(--ink);
+    color: var(--paper-raised);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    padding: 8px 18px;
+    box-shadow: 3px 3px 0 var(--accent);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .search-form button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--accent);
+  }
+
+  .search-form button:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--accent);
+  }
+
+  .no-results {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-top: 20px;
+  }
+
   /* Cards */
   .card {
     background: var(--paper-raised);
@@ -227,13 +288,17 @@
 <div class="container row gap-3">
     {% for tweet in tweets %}
         <div class="card" style="width: 18rem;">
-            <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">
+            {% if tweet.photo %}
+                <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">
+            {% endif %}
         <div class="card-body">
             <h5 class="card-title">{{tweet.user.username}}</h5>
             <p class="card-text">{{tweet.text}}</p>
+            {% if tweet.user == user %}
             <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
             <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
-        </div>
+            {% endif %}
+          </div>
         </div>
     {% endfor %}
 </div>    
@@ -241,5 +306,3 @@
 
 
 {% endblock %}
-
-
